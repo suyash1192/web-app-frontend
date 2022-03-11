@@ -7,6 +7,19 @@
   padding: 10px;
 }
 
+.input-field {
+  margin-right: 10px;
+}
+
+.product-qty {
+  padding: 10px;
+}
+
+.table-content {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .product-listing {
   padding: 5px;
 }

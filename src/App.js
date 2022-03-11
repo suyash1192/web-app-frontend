@@ -3,8 +3,8 @@ import * as BackendRequest from "./request";
 import "./App.css";
 
 function App() {
-  const [productList, setProductList] = useState()
-  const [newProduct, setNewProduct] = useState('')
+  const [productList, setProductList] = useState();
+  const [newProduct, setNewProduct] = useState();
 
   useEffect(() => {
     BackendRequest.getProducts(setProductList)
@@ -42,18 +42,29 @@ function App() {
           placeholder='Add a product...'
           value={newProduct}
           onChange={hangleProductChange}
+          className="input-field"
         />
         <button onClick={handelAddProduct}>Add Product</button>
       </div>
       <div className="product-listing">
-        {productList?.data?.map((product)=> (
-          <li key={product.id} id={product.id}>
-            {product.title}-
-            <button onClick={(event)=> handleProductCount(event, 'remove')}>-</button>
-            {product.count}
-            <button onClick={(event)=> handleProductCount(event, 'add')}>+</button>
-          </li>
-        ))}
+        <table className="table-content">
+          <tbody>
+            <tr>
+              <th>Product Name</th>
+              <th>Quantity</th>
+            </tr>
+            {productList?.data?.map((product)=> (
+              <tr key={product.id}>
+                <td>{product.title}</td>
+                <td id={product.id}>
+                  <button onClick={(event)=> handleProductCount(event, 'remove')}>-</button>
+                  <span className="product-qty">{product.count}</span>
+                  <button onClick={(event)=> handleProductCount(event, 'add')}>+</button>  
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
 
